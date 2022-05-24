@@ -6,7 +6,7 @@ namespace SpotifyWebAPI;
 
 class SpotifyWebAPIException extends \Exception
 {
-    public const TOKEN_EXPIRED = 'The access token expired';
+    public const TOKEN_EXPIRED = 'The access token has expired';
     public const RATE_LIMIT_STATUS = 429;
 
     /**
@@ -39,7 +39,7 @@ class SpotifyWebAPIException extends \Exception
     }
 
     /**
-     * Returns whether the exception was thrown because of rate limiting.
+     * Returns whether the exception was thrown because of the rate limitation.
      *
      * @return bool
      */
