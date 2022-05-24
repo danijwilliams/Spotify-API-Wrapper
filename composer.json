@@ -1,14 +1,14 @@
 {
-    "name": "jwilsson/spotify-web-api-php",
+    "name": "danijwilliams/spotify-web-api-php",
     "description": "A PHP wrapper for Spotify's Web API.",
     "type": "library",
     "license": "MIT",
     "keywords": ["spotify"],
-    "homepage": "https://github.com/jwilsson/spotify-web-api-php",
+    "homepage": "https://github.com/danijwilliams/spotify-web-api-php",
     "authors": [
         {
-            "name": "Jonathan Wilsson",
-            "email": "jonathan.wilsson@gmail.com"
+            "name": "Daniel Williams",
+            "email": "danieljwilliams509@gmail.com"
         }
     ],
     "require": {

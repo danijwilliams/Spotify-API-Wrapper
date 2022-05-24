@@ -43,7 +43,7 @@ class Request
         $error = $parsedBody->error ?? null;
 
         if (isset($error->message) && isset($error->status)) {
-            // It's an API call error
+            // API call error
             $exception = new SpotifyWebAPIException($error->message, $error->status);
 
             if (isset($error->reason)) {
@@ -52,13 +52,13 @@ class Request
 
             throw $exception;
         } elseif (isset($parsedBody->error_description)) {
-            // It's an auth call error
+            // Auth call error
             throw new SpotifyWebAPIAuthException($parsedBody->error_description, $status);
         } elseif ($body) {
-            // Something else went wrong, try to give at least some info
+            // Unexpected error, return some info
             throw new SpotifyWebAPIException($body, $status);
         } else {
-            // Something went really wrong, we don't know what
+            // Unknown error, return status
             throw new SpotifyWebAPIException('An unknown error occurred.', $status);
         }
     }
@@ -212,9 +212,7 @@ class Request
         }
 
         $ch = curl_init();
-
         curl_setopt_array($ch, array_replace($options, $this->options['curl_options']));
-
         $response = curl_exec($ch);
 
         if (curl_error($ch)) {
@@ -226,7 +224,6 @@ class Request
         }
 
         [$headers, $body] = $this->splitResponse($response);
-
         $parsedBody = json_decode($body, $this->options['return_assoc']);
         $status = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $parsedHeaders = $this->parseHeaders($headers);
